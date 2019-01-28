@@ -11,20 +11,26 @@ import PerfectHTTP
 class RegisterUserController {
   
   let registerUser: (HTTPRequest, HTTPResponse) -> () =  { request, response in
-    guard let receivedString = request.postBodyString,
-      let data = receivedString.data(using: .utf8) else {
-        response.completed(status: HTTPResponseStatus.custom(code: 500, message: "Wrong / missing user data. Check your request."))
+    
+    guard let userID = request.param(name: "id_user"),
+      let username = request.param(name:"username"),
+      let password = request.param(name:"password"),
+      let email = request.param(name:"email") else {
+        do {
+          try response.setBody(json: ["result": 0, "userMessage": "Wrong / missing user data. Check your request."])
+          response.completed()
+        } catch {
+          debugPrint("Failed to create a response with an error \(error)")
+        }
         return
     }
     
     do {
-      let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: AnyObject]
-      let userToRegister = RegisterUserRequest(json)
-      
-      try response.setBody(json: ["result": 1, "userMessage": "\(userToRegister.username) has been successfully registered!"])
+      try response.setBody(json: ["result": 1, "userMessage": "User \(username) has been successfully registered!"])
       response.completed()
     } catch {
-      response.completed(status: HTTPResponseStatus.custom(code: 500, message: "Parse data error - \(error)"))
+      debugPrint("Failed to create a response with an error \(error)")
     }
   }
+  
 }
