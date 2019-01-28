@@ -17,7 +17,7 @@ class RegisterUserController {
       let password = request.param(name:"password"),
       let email = request.param(name:"email") else {
         do {
-          try response.setBody(json: ["result": 0, "errorMessage": "Incorrect / missing user data. Check your request."])
+          try response.setBody(json: ["result": 0, "userMessage": "Incorrect / missing user data. Check your request."])
           response.completed()
         } catch {
           print("Failed to create a response with an error \(error)")

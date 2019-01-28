@@ -14,7 +14,7 @@ class ApproveReviewController {
     
     guard let reviewID = request.param(name: "id_comment") else {
       do {
-        try response.setBody(json: ["result": 0, "errorMessage": "Incorrect / missing review ID. Check your request."])
+        try response.setBody(json: ["result": 0, "userMessage": "Incorrect / missing review ID. Check your request."])
         response.completed()
       } catch {
         print("Failed to create a response with an error \(error)")

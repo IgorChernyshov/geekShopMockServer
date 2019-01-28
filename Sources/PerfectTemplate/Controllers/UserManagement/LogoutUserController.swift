@@ -14,7 +14,7 @@ class LogoutUserController {
     
     guard let userID = request.param(name:"id_user") else {
         do {
-          try response.setBody(json: ["result": 0, "errorMessage": "Incorrect user ID or user is not logged in."])
+          try response.setBody(json: ["result": 0, "userMessage": "Incorrect user ID or user is not logged in."])
           response.completed()
         } catch {
           print("Failed to create a response with an error \(error)")

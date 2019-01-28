@@ -15,7 +15,7 @@ class AddReviewController {
     guard let userID = request.param(name: "id_user"),
       let text = request.param(name:"text") else {
         do {
-          try response.setBody(json: ["result": 0, "errorMessage": "Incorrect / missing data. Check your request."])
+          try response.setBody(json: ["result": 0, "userMessage": "Incorrect / missing data. Check your request."])
           response.completed()
         } catch {
           print("Failed to create a response with an error \(error)")
