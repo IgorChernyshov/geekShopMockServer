@@ -1,5 +1,5 @@
 //
-//  RegisterUserController.swift
+//  LoginUserController.swift
 //  PerfectTemplate
 //
 //  Created by Igor Chernyshov on 28/01/2019.
@@ -8,14 +8,12 @@
 import Foundation
 import PerfectHTTP
 
-class RegisterUserController {
+class LoginUserController {
   
-  let registerUser: (HTTPRequest, HTTPResponse) -> () =  { request, response in
+  let loginUser: (HTTPRequest, HTTPResponse) -> () =  { request, response in
     
-    guard let userID = request.param(name: "id_user"),
-      let username = request.param(name:"username"),
-      let password = request.param(name:"password"),
-      let email = request.param(name:"email") else {
+    guard let username = request.param(name:"username"),
+      let password = request.param(name:"password") else {
         do {
           try response.setBody(json: ["result": 0, "errorMessage": "Incorrect / missing user data. Check your request."])
           response.completed()
@@ -26,7 +24,7 @@ class RegisterUserController {
     }
     
     do {
-      try response.setBody(json: ["result": 1, "userMessage": "User \(username) has been successfully registered!"])
+      try response.setBody(json: ["result": 1, "user": ["id_user": 8, "user_login": "Frostfell", "user_name": "Igor", "user_lastname": "Chernyshov"]])
       response.completed()
     } catch {
       print("Failed to create a response with an error \(error)")
