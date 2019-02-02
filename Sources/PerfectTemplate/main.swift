@@ -21,9 +21,23 @@ import PerfectHTTP
 import PerfectHTTPServer
 
 let server = HTTPServer()
+// Review Management
+let addReviewController = AddReviewController()
+let approveReviewController = ApproveReviewController()
+let removeReviewController = RemoveReviewController()
+// User Management
+let changeUserProfileController = ChangeUserProfileController()
+let loginUserController = LoginUserController()
+let logoutUserController = LogoutUserController()
 let registerUserController = RegisterUserController()
 var routes = Routes()
 
+routes.add(method: .post, uri: "/addReview", handler: addReviewController.addReview)
+routes.add(method: .post, uri: "/approveReview", handler: approveReviewController.approveReview)
+routes.add(method: .post, uri: "/removeReview", handler: removeReviewController.removeReview)
+routes.add(method: .post, uri: "/changeUserProfile", handler: changeUserProfileController.changeUserProfile)
+routes.add(method: .post, uri: "/login", handler: loginUserController.loginUser)
+routes.add(method: .post, uri: "/logout", handler: logoutUserController.logoutUser)
 routes.add(method: .post, uri: "/register", handler: registerUserController.registerUser)
 
 server.addRoutes(routes)
