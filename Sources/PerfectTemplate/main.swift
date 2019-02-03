@@ -21,15 +21,28 @@ import PerfectHTTP
 import PerfectHTTPServer
 
 let server = HTTPServer()
+server.serverPort = 8080
+
 // Review Management
+
 let addReviewController = AddReviewController()
 let approveReviewController = ApproveReviewController()
 let removeReviewController = RemoveReviewController()
+
 // User Management
+
 let changeUserProfileController = ChangeUserProfileController()
 let loginUserController = LoginUserController()
 let logoutUserController = LogoutUserController()
 let registerUserController = RegisterUserController()
+
+// Basket management
+
+let addItemToBasket = AddItemToBasketController()
+let removeItemFromBasket = RemoveItemFromBasketController()
+let getItemsList = GetItemsListController()
+let getUsersBasket = GetUsersBasketController()
+
 var routes = Routes()
 
 routes.add(method: .post, uri: "/addReview", handler: addReviewController.addReview)
@@ -39,9 +52,12 @@ routes.add(method: .post, uri: "/changeUserProfile", handler: changeUserProfileC
 routes.add(method: .post, uri: "/login", handler: loginUserController.loginUser)
 routes.add(method: .post, uri: "/logout", handler: logoutUserController.logoutUser)
 routes.add(method: .post, uri: "/register", handler: registerUserController.registerUser)
+routes.add(method: .post, uri: "/addToBasket", handler: addItemToBasket.addItemToBasket)
+routes.add(method: .post, uri: "/removeFromBasket", handler: removeItemFromBasket.removeItemFromBasket)
+routes.add(method: .post, uri: "/getItemsList", handler: getItemsList.getItemsList)
+routes.add(method: .post, uri: "/getUsersBasket", handler: getUsersBasket.getUsersBasket)
 
 server.addRoutes(routes)
-server.serverPort = 8080
 
 do {
   try server.start()

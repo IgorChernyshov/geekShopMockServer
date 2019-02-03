@@ -24,7 +24,11 @@ class LoginUserController {
     }
     
     do {
-      try response.setBody(json: ["result": 1, "user": ["id_user": 8, "user_login": "Frostfell", "user_name": "Igor", "user_lastname": "Chernyshov"]])
+      try response.setBody(json: ["result": 1,
+                                  "user": ["id_user": 8,
+                                           "user_login": "Frostfell",
+                                           "user_name": "Igor",
+                                           "user_lastname": "Chernyshov"]])
       response.completed()
     } catch {
       print("Failed to create a response with an error \(error)")
