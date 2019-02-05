@@ -11,3 +11,8 @@ Written on Swift, using Perfect framework (For more information on the Perfect p
   * Login User
   * Logout User
   * Register User
+- Basket Management:
+  * Add an item to the basket
+  * Remove an item from the basket
+  * Get items list from the server
+  * Get user's basket content
